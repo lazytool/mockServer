@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>mock server home page</title>
+<link rel="stylesheet" href="js/jeasyui/themes/default/easyui.css" />
+<link rel="stylesheet" href="css/frame.css" />
+<link rel="stylesheet" href="js/jeasyui/themes/icon.css" />
+<script language="javascript" type="text/javascript"
+	src="js/common/jquery-1.7.2.min.js"></script>
+<script language="javascript" type="text/javascript"
+	src="js/jeasyui/jquery.easyui.min.js"></script>
+<script language="javascript" type="text/javascript"
+	src="js/common/jeasyui.js"></script>
+<script language="javascript" type="text/javascript"
+	src="js/page/index.js"></script>
+</head>
+<body class="easyui-layout">
+	<form id="form1">
+		<div data-options="region:'north',border:false"
+			style="height: 45px; padding: 10px; background: #8DB2E3">
+			<span class="x-north-logo">&nbsp; Mock Server</span>
+		</div>
+
+		<!-- 左侧导航 -->
+		<div data-options="region:'west',split:true,title:'导航'"
+			style="width: 160px; padding: 10px; padding: 0; margin: 0">
+			<div id="aa" class="easyui-accordion" style="padding: 0; margin: 0">
+			<!--  
+				<div title="场景管理">
+					<div style="line-height: 22px; margin-left: 12px;">
+						<a class="nav" href="#" url="scenarios/list" title="场景列表">场景列表</a>
+					</div>
+
+				</div>
+				<div title="mock数据管理" style="padding: 8px 0px 8px 0px">
+					<div style="line-height: 22px; margin-left: 12px;">
+						<a class="nav" href="#" url="" title="mock数据集列表">mock数据集列表</a>
+					</div>
+
+				</div>
+				<div title="slave管理" style="padding: 8px 0px 8px 0px">
+					<div style="line-height: 22px; margin-left: 12px;">
+						<a class="nav" href="#" url="" title="slave">slave列表</a>
+					</div>
+				</div>-->
+
+				<div title="系统管理" style="padding: 8px 0px 8px 0px">
+					<div style="line-height: 22px; margin-left: 12px;">
+						<a class="nav" href="#" url="system/setting"title="系统参数配置">系统参数配置</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 内容  -->
+		<div data-options="region:'center'">
+			<div id="tabs" class="easyui-tabs">
+				<div id="main" data-options="title:'首页',closable:false"
+					style="padding: 20px;"></div>
+			</div>
+		</div>
+		<!-- 鼠标右键  -->
+		<div id="mm" class="easyui-menu" style="width: 160px;">
+			<div id="mm-closeone" onclick="CloseCurrTab()">关闭当前选项</div>
+			<div id="mm-closeall" onclick="CloseAllTabExceptThis()">
+				除此之外全部关闭</div>
+		</div>
+		<!-- reload -->
+		<div id="tab-tools">
+			<a href="#" class="easyui-linkbutton"
+				data-options="plain:true,iconCls:'icon-reload'"
+				onclick="ReloadTab()"></a>
+		</div>
+		<input type="hidden" id="hidCurrTab" />
+	</form>
+</body>
+</html>

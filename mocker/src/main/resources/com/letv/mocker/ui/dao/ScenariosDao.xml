@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.letv.mocker.ui.dao.ScenariosDao">
+	<select id="scenariosTableCount" resultType="int">
+		SELECT COUNT(*) FROM
+		sqlite_master WHERE TYPE='table' AND NAME='SCENARIOS'
+	</select>
+
+	<insert id="insert" parameterType="map">
+		INSERT INTO SCENARIOS
+		(name,ips) VALUES (#{name},#{ips})
+	</insert>
+
+	<select id="findIpsByName" parameterType="map" resultType="string">
+		SELECT ips FROM SYSTEM WHERE name=#{name}
+	</select>
+	<select id="findByIp" parameterType="map"
+		resultType="com.letv.mocker.ui.vo.Scenarios">
+		SELECT * FROM SCENARIOS WHERE ips like '%#{ip}%'
+	</select>
+	<select id="findAll" parameterType="map"
+		resultType="com.letv.mocker.ui.vo.Scenarios">
+		SELECT * FROM SCENARIOS
+	</select>
+	<select id="findScenarios" parameterType="map"
+		resultType="com.letv.mocker.ui.vo.Scenarios" flushCache="true">
+		SELECT * FROM SCENARIOS WHERE 1=1
+		<if test="mockCollectionName != null"> AND name like '%${mockCollectionName}%'</if>
+		<if test="ip != null"> AND ips like '%${ip}%'</if>
+	</select>
+
+	<update id="createScenariosTable">
+		CREATE TABLE SCENARIOS (name TEXT primary key,ips
+		TEXT)
+	</update>
+	<update id="update" parameterType="map" flushCache="true">
+		UPDATE SCENARIOS
+		<set>
+			<if test="value != null">
+				ips = #{ips},
+			</if>
+		</set>
+		WHERE name = #{name}
+	</update>
+</mapper>

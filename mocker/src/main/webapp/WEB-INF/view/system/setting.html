@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>系统参数配置</title>
+</head>
+<body>
+<form id="_setting"  name="setting" action="update" method="post">
+<#if sysList??>
+   <#list sysList as system>
+        <#if system.name == "MODE">
+           MODE:&nbsp;&nbsp;
+           <#if system.value == "proxy">
+           <input name="MODE" type="radio" checked="checked" value="proxy" />&nbsp;proxy&nbsp;&nbsp;
+           <#else>
+           <input name="MODE" type="radio" value="proxy" />&nbsp;proxy&nbsp;&nbsp;
+           </#if>
+           <#if system.value == "mock">
+           <input name="MODE" type="radio" checked="checked" value="mock" />&nbsp;mock&nbsp;&nbsp;
+           <#else>
+           <input name="MODE" type="radio" value="mock" />&nbsp;mock&nbsp;&nbsp;
+           </#if>
+           <#if system.value == "record">
+           <input name="MODE" type="radio" checked="checked" value="record" />&nbsp;record&nbsp;&nbsp;
+           <#else>
+           <input name="MODE" type="radio" value="record" />&nbsp;record&nbsp;&nbsp;
+           </#if>
+           <br><br>
+        <#else>
+            <input id="name" name="name" type="hidden" value="${(system.name)!}">${(system.name)!}: &nbsp;
+            <input id="value" name="value" type="text" size="150" maxlength="1000" value='${(system.value)!}'/><br><br>
+        </#if>
+   </#list>
+</#if>
+<!--提交或取消-->
+    <div class="footer">
+        <input type="submit" class="footer_content" id="_submit" value="更新"/>
+    </div>
+</form>
+</body>
+</html>

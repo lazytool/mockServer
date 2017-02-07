@@ -1,0 +1,14 @@
+body {}
+A {TEXT-DECORATION: none;font-size: 12.5px;}
+A:link {COLOR: #666666;FONT-FAMILY: 宋体;TEXT-DECORATION: none}
+A:visited {COLOR: #666666;FONT-FAMILY: 宋体;TEXT-DECORATION: none}
+A:active {FONT-FAMILY: 宋体;TEXT-DECORATION: none}
+A:hover {BORDER-BOTTOM: 1px dotted;BORDER-LEFT-WIDTH: 1px;BORDER-RIGHT-WIDTH: 1px;BORDER-TOP-WIDTH: 1px;COLOR: #ff6600;TEXT-DECORATION: none}
+.x-north-logo {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 20px;
+}

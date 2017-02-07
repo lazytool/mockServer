@@ -1,0 +1,19 @@
+<div id="text" class="_json">${(res)!}</div>
+<style>
+._json {
+	white-space: pre;
+}
+</style>
+<script type="text/javascript">
+	if (navigator.appName.indexOf("Explorer") > -1) {
+		var text = document.getElementById('text').innerText;
+		var jsonobj = JSON.parse(text);
+		var res = JSON.stringify(jsonobj, null, 8);
+		document.getElementById('text').innerText = res;
+	} else {
+		var text = document.getElementById('text').textContent;
+		var jsonobj = JSON.parse(text);
+		var res = JSON.stringify(jsonobj, null, 8);
+		document.getElementById('text').textContent = res;
+	}
+</script>

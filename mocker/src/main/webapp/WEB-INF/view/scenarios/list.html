@@ -1,0 +1,94 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>场景列表</title>
+<link rel="stylesheet" type="text/css" href="/js/jeasyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="/js/jeasyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="/js/jeasyui/demo.css">
+<link rel="stylesheet" type="text/css" href="/css/body.css">
+<script type="text/javascript" src="/js/common/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/js/jeasyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/js/common/util.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#_scenariosList').datagrid({
+			onClickRow : function(index, row) {
+				alert(index + "-->" + row.name);
+				var title = row.name;
+				var url = "showResDetail.do?uuid=" + row.name;
+				//addSubPage(title, url);
+			}
+		});
+		
+		//关闭活动窗口
+		$('#_add').window('close');
+		$('#_edit').window('close');
+	});
+	
+	<!-- iframe高度自适应-->
+    function iFrameHeight() {
+        var ifm = document.getElementById("iframepage");
+        var subWeb = document.frames ? document.frames["iframepage"].document
+                : ifm.contentDocument;
+        if (ifm != null && subWeb != null) {
+            ifm.height = subWeb.body.scrollHeight;
+        }
+    }
+    
+    function doSearch(){
+    	var name=$('#name').val();
+    	var ip=$('#ip').val();
+    	if (Trim(name, 'g') == '' && Trim(ip,'g') == '') {
+            alert("搜索关键字不能为空");
+            return false;
+        }
+        //重新加载table数据:请求/scenarios/search 传参name和ip
+    	$('#_scenariosList').datagrid('load', {
+             name : $('#name').val(),
+             ip : $('#ip').val()
+         });
+    }
+</script>
+
+</head>
+<body class="mainBody">
+	<div class="fullDiv">
+		<!-- 列表 -->
+		<table id="_scenariosList" class="easyui-datagrid" title=""
+			style="width: 1400px; height: 625px"
+			data-options="url:'search',method:'get',rownumbers:true,singleSelect:true,selectOnCheck:true,fitColumns:true,striped:true,toolbar:'#_toolbar',"
+			pagination="true" pageSize=20 pageList=[20,30,40,50,100]>
+			<thead>
+				<tr>
+					<th data-options="field:'name',width:200">MockCollection Name</th>
+					<th data-options="field:'ips',width:600,align:'left'">ClientIP</th>
+					<th data-options="field:'status',width:100,align:'right'">Status</th>
+				</tr>
+			</thead>
+		</table>
+		<!-- 工具栏 -->
+		<div id="_toolbar" style="padding: 5px; height: auto">
+			<div>
+				MockCollection Name &nbsp;<input id="name" style="width: 250px; line-height: 26px; border: 1px solid #ccc">&nbsp;
+				ClientIP &nbsp;<input id="ip" style="width: 250px; line-height: 26px; border: 1px solid #ccc">
+				<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch();">查询</a>
+			    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="$('#_add').window('open');">Add</a>
+			    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="$('#_edit').window('open');">Edit</a>
+			    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="doRemove();">Remove</a>
+                
+			</div>
+		</div>
+		<!-- 新增窗口 -->
+		<div id="_add" class="easyui-window" title="新增" data-options="iconCls:'icon-add'" style="width:1000px;height:600px;padding:10px;">
+            <iframe src='addPage' id="iframepage" name="iframepage" frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()">
+            </iframe>	    
+        </div>
+        
+        <!-- 编辑窗口 -->
+        <div id="_edit" class="easyui-window" title="编辑" data-options="iconCls:'icon-add'" style="width:1000px;height:600px;padding:10px;">
+            这是一个编辑窗口<br>
+        </div>
+        
+	</div>
+</body>
+</html>

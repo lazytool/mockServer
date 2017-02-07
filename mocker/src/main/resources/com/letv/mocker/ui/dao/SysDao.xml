@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.letv.mocker.ui.dao.SysDao">
+	<select id="sysTableCount" resultType="int">
+		SELECT COUNT(*) FROM
+		sqlite_master WHERE TYPE='table' AND NAME='SYSTEM'
+	</select>
+	<update id="createSysTable">
+		CREATE TABLE SYSTEM (name TEXT NOT NULL,value
+		TEXT)
+	</update>
+	<insert id="insert" parameterType="map">
+		INSERT INTO SYSTEM
+		(name,value) VALUES (#{name},#{value})
+	</insert>
+	<select id="findValByName" parameterType="map" resultType="string">
+		SELECT value FROM SYSTEM WHERE name=#{name}
+	</select>
+	<select id="findAll" resultType="com.letv.mocker.ui.vo.SystemContext">
+        SELECT * FROM SYSTEM
+    </select>
+	<update id="update" parameterType="map" flushCache="true">
+        UPDATE SYSTEM
+        <set>
+            <if test="value != null">
+                value = #{value},
+            </if>
+        </set>
+        where name = #{name}
+    </update>
+
+</mapper>
