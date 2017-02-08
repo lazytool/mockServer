@@ -18,7 +18,11 @@ MAC：sudo java -jar mocker-1.0-SNAPSHOT.jar
 
 http://localhost/
 
-4.目录清单
+选择record模式
+
+4.修改要录制的服务器hosts文件,使其指向mockServer服务器。
+
+5.目录清单
 
   mock_data mock数据目录
 
@@ -29,3 +33,4 @@ http://localhost/
   logs web访问日志
   
   ${HOME}/mocker_logs 应用详细日志
+  
